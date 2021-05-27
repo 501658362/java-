@@ -2,17 +2,78 @@ package algorithms.中级;
 
 import com.google.common.collect.Lists;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class 无重复字符的最长子串3 {
+public class M_3_无重复字符的最长子串 {
 
     public static void main(String[] args) {
-        无重复字符的最长子串3 solution = new 无重复字符的最长子串3();
-        int pwwkew = solution.lengthOfLongestSubstring("au");
+        M_3_无重复字符的最长子串 solution = new M_3_无重复字符的最长子串();
+        int pwwkew = solution.lengthOfLongestSubstring("pwwkew");
         System.out.println(1);
     }
 
     public int lengthOfLongestSubstring(String s) {
+
+        if (s.length() == 0) {
+            return 0;
+        }
+        int maxlength = 0;
+
+        Map<Character, Integer> windows = new HashMap<>();
+        int left = 0;
+        int right = 0;
+        while (right < s.length()) {
+            char cur = s.charAt(right);
+            right++;
+            windows.put(cur, windows.getOrDefault(cur, 0) + 1);
+            while (windows.get(cur) > 1) {
+                char leftC = s.charAt(left);
+                left++;
+                windows.put(leftC, windows.getOrDefault(leftC, 0) - 1);
+            }
+            maxlength = Math.max(right - left, maxlength);
+        }
+        maxlength = Math.max(right - left, maxlength);
+        return maxlength;
+    }
+
+    public int lengthOfLongestSubstring3(String s) {
+
+        if (s.length() == 0) {
+            return 0;
+        }
+        int maxlength = 0;
+
+        Map<Character, Integer> windows = new HashMap<>();
+        int right = 0;
+        while (right < s.length()) {
+            char cur = s.charAt(right);
+            right++;
+            if (windows.containsKey(cur)) {
+                maxlength = Math.max(windows.size(), maxlength);
+                Integer integer = windows.get(cur);
+                List<Character> needRm = new ArrayList<>();
+                for (final Character character : windows.keySet()) {
+                    if (windows.get(character) < integer) {
+                        needRm.add(character);
+                    }
+                }
+                for (final Character character : needRm) {
+                    windows.remove(character);
+                }
+            }
+            windows.put(cur, right - 1);
+        }
+        maxlength = Math.max(windows.size(), maxlength);
+        return maxlength;
+    }
+
+    public int lengthOfLongestSubstring2(String s) {
 
         if (s.length() == 0) {
             return 0;
@@ -49,7 +110,7 @@ public class 无重复字符的最长子串3 {
     }
 
     public int lengthOfLongestSubstring1(String s) {
-        List<String> list = Lists.newArrayList();
+        List<String> list = new ArrayList<>();
         String[] split = s.split("");
         int max = 0;
         int length = s.length();
