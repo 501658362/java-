@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-public class 合并两个有序链表21 {
+public class E_21_合并两个有序链表 {
     /**
      * 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
      * <p>
@@ -30,7 +30,7 @@ public class 合并两个有序链表21 {
 
 
     public static void main(String[] args) {
-        合并两个有序链表21 solution = new 合并两个有序链表21();
+        E_21_合并两个有序链表 solution = new E_21_合并两个有序链表();
 //        int i = solution.romanToInt("IV");
         ListNode x1 = new ListNode(1, new ListNode(2, new ListNode(3)));
         ListNode x2 = new ListNode(1, new ListNode(3, new ListNode(5)));
