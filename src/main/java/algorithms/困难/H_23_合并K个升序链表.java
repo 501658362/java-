@@ -19,7 +19,6 @@ public class H_23_合并K个升序链表 {
         ListNode iii = solution.mergeKLists(lists);
         System.out.println(1);
 
-        PriorityQueue<Integer> x = new PriorityQueue<>();
     }
 
     public ListNode mergeKLists(ListNode[] lists) {
